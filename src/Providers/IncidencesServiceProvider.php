@@ -15,8 +15,8 @@ class IncidencesServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        if (!defined('EVENTS_PATH')) {
-            define('EVENTS_PATH', realpath(__DIR__.'/../../'));
+        if (!defined('INCIDENCES_PATH')) {
+            define('INCIDENCES_PATH', realpath(__DIR__.'/../../'));
         }
     }
 
@@ -24,13 +24,25 @@ class IncidencesServiceProvider extends ServiceProvider
     {
         //dump("booting incidences package");
         $this->defineRoutes();
+        $this->loadViews();
+        $this->loadMigrations();
     }
 
     private function defineRoutes()
     {
         
-        require EVENTS_PATH . '/src/routes/web.php';
+        require INCIDENCES_PATH . '/src/routes/web.php';
 
+    }
+
+    private function loadViews()
+    {
+        $this->loadViewsFrom(INCIDENCES_PATH.'/resources/views','incidences');
+    }
+
+    private function loadMigrations()
+    {
+        $this->loadMigrationsFrom(INCIDENCES_PATH.'/database/migrations');
     }
 
 }

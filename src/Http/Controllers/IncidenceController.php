@@ -16,7 +16,7 @@ class IncidenceController extends Controller
         //CRUD -> Retrieve --> List
         //BREAD -> Browse Read Edit Add Delete
         $incidences = Incidence::All();
-        return view('list_events',compact('incidences'));
+        return view('incidences::list_events',compact('incidences'));
 
     }
 
